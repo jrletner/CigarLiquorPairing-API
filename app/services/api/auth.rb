@@ -14,5 +14,10 @@ module Api # same name as folder in services
       # return the service contract
       ServiceContract.success({ user: user, token: token })
     end
+
+    def self.logout(current_user, token)
+      return ServiceContract.success(true) if current_user && token.update(revocation_date: DateTime.now)
+      ServiceContract.error("There was a problem logging user out")
+    end
   end
 end

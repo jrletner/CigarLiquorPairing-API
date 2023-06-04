@@ -41,9 +41,13 @@ module Api
       end
 
       def me
+        render_success(payload: UserBlueprint.render_as_hash(@current_user), status: 200)
       end
 
       def logout
+        result = Api::Auth.logout(@current_user, @token)
+        render_error(errors: "There was a problem logging out", status: 401) and return unless result.success?
+        render_success(payload: "You have been successfull logged out", status: 200)
       end
     end
   end
