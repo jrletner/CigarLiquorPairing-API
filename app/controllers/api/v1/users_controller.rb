@@ -1,7 +1,23 @@
 module Api
   module V1
     class UsersController < Api::V1::ApplicationController
+
+      # skip authentication for create and login
+      skip_before_action :authenticate, only: [:create, :login]
+
       def login
+        # Step 1: get the result from the service
+        result = Api::Auth.login(params[:email], params[:password], @ip)
+        # Step 2: teturn an error if result was unsuccessful
+        # return an error unless the result is success (true)
+        render_error(errors: "There was a problem authenticating the user", status: 401) and return unless result.success?
+        # Step 3: otherwise build a payload
+        payload = {
+          user: UserBlueprint.render_as_hash(result.payload[:user], view: :login),
+          token: TokenBlueprint.render_as_hash(result.payload[:token]), status: 200,
+        }
+        # Step 4: return a successful response with payload
+        render_success(payload: payload, status: 200)
       end
 
       def index
@@ -10,13 +26,18 @@ module Api
       end
 
       def create
-        user = User.new(email: params[:email], first_name: params[:first_name], last_name: params[:last_name], password: params[:password])
-
-        if user.save
-          render_success(payload: { user: UserBlueprint.render_as_hash(user) }, status: :created)
-        else
-          render_error(errors: "There was a problem creating a new user", status: 400)
-        end
+        # Step 1: get the result from the service
+        # use same folder / file name as service created
+        result = Api::Users.new_user(params)
+        # Step 2: return an error if result was unsuccessful
+        # return an error unless the result is success (true)
+        render_error(errors: "There was a problem creating a new user", status: 400) and return unless result.success?
+        # Step 3: otherwise build a payload
+        payload = {
+          user: UserBlueprint.render_as_hash(result.payload),
+        }
+        # Step 4: return a successful response with payload
+        render_success(payload: payload, status: 201)
       end
 
       def me
