@@ -3,12 +3,15 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.0"
 gem "pg"
+
 gem "rswag-api"
 gem "rswag-ui"
 
 group :development, :test do
   gem "rspec-rails"
   gem "rswag-specs"
+  gem 'faker'
+  gem 'factory_bot_rails'
 end
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -49,6 +52,7 @@ gem "rack-cors"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "rswag"
 end
 
 group :development do

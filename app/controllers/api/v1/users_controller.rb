@@ -21,8 +21,11 @@ module Api
       end
 
       def index
-        user = User.all
-        render json: UserBlueprint.render_as_hash(user)
+        users = User.all
+        payload = {
+          user: UserBlueprint.render_as_hash(users),
+        }
+        render_success(payload: payload, status: 200)
       end
 
       def create
@@ -48,6 +51,16 @@ module Api
         result = Api::Auth.logout(@current_user, @token)
         render_error(errors: "There was a problem logging out", status: 401) and return unless result.success?
         render_success(payload: "You have been successfull logged out", status: 200)
+      end
+
+      def update
+        result = Api::Users.update_user(params)
+        render_error(errors: result.errors.all, status: 400) and return unless result.success?
+        payload = {
+          user: UserBlueprint.render_as_hash(result.payload),
+          status: 201,
+        }
+        render_success(payload: payload)
       end
     end
   end

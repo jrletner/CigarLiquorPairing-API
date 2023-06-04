@@ -14,5 +14,12 @@ module Api # same name as folder in services
       # if the user was successful, return a sucess and payload
       ServiceContract.success(user)
     end
+
+    def self.update_user(params)
+      user = User.find(params[:id])
+      return ServiceContract.success(user) if user.update(email: params[:email], first_name: params[:first_name], last_name: params[:last_name])
+
+      ServiceContract.error(user.errors.full_messages)
+    end
   end
 end

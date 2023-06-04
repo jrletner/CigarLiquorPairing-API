@@ -1,0 +1,124 @@
+---
+openapi: 3.0.1
+info:
+  title: CigarLiquorPairing API V1
+  version: v1
+paths:
+  "/api/v1/users/login":
+    post:
+      summary: login user
+      description: Log a user in
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+  "/api/v1/users/create":
+    post:
+      summary: create user
+      description: Create a new user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                password:
+                  type: string
+  "/api/v1/users/me":
+    get:
+      summary: me user
+      description: Return a single user
+      tags:
+      - Users
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: successful
+  "/api/v1/users/logout":
+    delete:
+      summary: logout user
+      description: Log a user out
+      tags:
+      - Users
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: successful
+  "/api/v1/users/index":
+    get:
+      summary: list users
+      description: Return a list of all users
+      tags:
+      - Users
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: successful
+  "/api/v1/users/update":
+    put:
+      summary: update user
+      description: Update a user
+      tags:
+      - Users
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: number
+                email:
+                  type: string
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+consumes:
+- application/json
+produces:
+- application/json
+components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearer_format: string
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000/
