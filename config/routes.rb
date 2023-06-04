@@ -20,6 +20,8 @@ Rails.application.routes.draw do
         get :me
         # api/V1/users/logout, to: "users#logout"
         delete :logout
+        # api/V1/users/, to: "users#index"
+        get :index
       end
     end
   end
