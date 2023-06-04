@@ -2,6 +2,9 @@ class User < ApplicationRecord
   has_secure_password validations: true
   validates :email, uniqueness: true
   has_many :tokens
+  has_many :cigars
+  has_many :liquors
+  has_many :pairings
 
   def name
     "#{first_name} #{last_name}"
