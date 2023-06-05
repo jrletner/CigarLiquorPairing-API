@@ -110,6 +110,10 @@ RSpec.describe "api/v1/cigars", type: :request do
       description "List a single cigar"
       tags "Cigars"
       security [bearer_auth: []]
+      parameter name: :id, in: :query, required: true, schema: {
+                  type: "integer",
+                  description: "ID of the cigar",
+                }
       response(200, "successful") do
         after do |example|
           example.metadata[:response][:content] = {

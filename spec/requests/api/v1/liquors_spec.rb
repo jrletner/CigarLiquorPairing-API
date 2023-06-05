@@ -9,7 +9,7 @@ RSpec.describe "api/v1/liquors", type: :request do
       tags "Liquors"
       security [bearer_auth: []]
       consumes "application/json"
-      parameter name: :update, in: :body, schema: {
+      parameter name: :create, in: :body, schema: {
                   type: "object",
                   properties: {
                     name: { type: "string" },
@@ -86,7 +86,7 @@ RSpec.describe "api/v1/liquors", type: :request do
       tags "Liquors"
       security [bearer_auth: []]
       consumes "application/json"
-      parameter name: :update, in: :body, schema: {
+      parameter name: :delete, in: :body, schema: {
                   type: "object",
                   properties: {
                     id: { type: "number" },
@@ -110,6 +110,12 @@ RSpec.describe "api/v1/liquors", type: :request do
     get("show liquor") do
       description "List a single liquor"
       tags "Liquors"
+      security [bearer_auth: []]
+      consumes "application/json"
+      parameter name: :id, in: :query, required: true, schema: {
+                  type: "integer",
+                  description: "ID of the liquor",
+                }
       response(200, "successful") do
         after do |example|
           example.metadata[:response][:content] = {

@@ -93,6 +93,13 @@ paths:
       - Cigars
       security:
       - bearer_auth: []
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: integer
+          description: ID of the cigar
       responses:
         '200':
           description: successful
@@ -183,6 +190,15 @@ paths:
       description: List a single liquor
       tags:
       - Liquors
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: integer
+          description: ID of the liquor
       responses:
         '200':
           description: successful
