@@ -1,15 +1,15 @@
 require "swagger_helper"
 
-RSpec.describe "api/v1/cigars", type: :request do
-  path "/api/v1/cigars/create" do
+RSpec.describe "api/v1/liquors", type: :request do
 
-    # C R E A T E
-    post("create cigar") do
-      description "Create a new cigar"
-      tags "Cigars"
+  # C R E A T E
+  path "/api/v1/liquors/create" do
+    post("create liquor") do
+      description "Create a liquor"
+      tags "Liquors"
       security [bearer_auth: []]
       consumes "application/json"
-      parameter name: :create, in: :body, schema: {
+      parameter name: :update, in: :body, schema: {
                   type: "object",
                   properties: {
                     name: { type: "string" },
@@ -31,11 +31,12 @@ RSpec.describe "api/v1/cigars", type: :request do
   end
 
   # I N D E X
-  path "/api/v1/cigars/index" do
-    get("list cigars") do
-      description "List all cigars"
-      tags "Cigars"
+  path "/api/v1/liquors/index" do
+    get("list liquors") do
+      description "Show all liquors"
+      tags "Liquors"
       security [bearer_auth: []]
+
       response(200, "successful") do
         after do |example|
           example.metadata[:response][:content] = {
@@ -50,10 +51,10 @@ RSpec.describe "api/v1/cigars", type: :request do
   end
 
   # U P D A T E
-  path "/api/v1/cigars/update" do
-    put("update cigar") do
-      description "Update a cigar"
-      tags "Cigars"
+  path "/api/v1/liquors/update" do
+    put("update liquor") do
+      description "Update a liquor"
+      tags "Liquors"
       security [bearer_auth: []]
       consumes "application/json"
       parameter name: :update, in: :body, schema: {
@@ -79,10 +80,10 @@ RSpec.describe "api/v1/cigars", type: :request do
   end
 
   # D E L E T E
-  path "/api/v1/cigars/delete" do
-    delete("delete cigar") do
-      description "Delete a cigar"
-      tags "Cigars"
+  path "/api/v1/liquors/delete" do
+    delete("delete liquor") do
+      description "List a single liquor"
+      tags "Liquors"
       security [bearer_auth: []]
       consumes "application/json"
       parameter name: :update, in: :body, schema: {
@@ -105,11 +106,10 @@ RSpec.describe "api/v1/cigars", type: :request do
   end
 
   # S H O W
-  path "/api/v1/cigars/show" do
-    get("show cigar") do
-      description "List a single cigar"
-      tags "Cigars"
-      security [bearer_auth: []]
+  path "/api/v1/liquors/show" do
+    get("show liquor") do
+      description "List a single liquor"
+      tags "Liquors"
       response(200, "successful") do
         after do |example|
           example.metadata[:response][:content] = {

@@ -47,9 +47,24 @@ paths:
       - Cigars
       security:
       - bearer_auth: []
+      parameters: []
       responses:
         '200':
           description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: number
+                name:
+                  type: string
+                brand:
+                  type: string
+                description:
+                  type: string
   "/api/v1/cigars/delete":
     delete:
       summary: delete cigar
@@ -58,9 +73,18 @@ paths:
       - Cigars
       security:
       - bearer_auth: []
+      parameters: []
       responses:
         '200':
           description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: number
   "/api/v1/cigars/show":
     get:
       summary: show cigar
@@ -69,6 +93,96 @@ paths:
       - Cigars
       security:
       - bearer_auth: []
+      responses:
+        '200':
+          description: successful
+  "/api/v1/liquors/create":
+    post:
+      summary: create liquor
+      description: Create a liquor
+      tags:
+      - Liquors
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                brand:
+                  type: string
+                description:
+                  type: string
+  "/api/v1/liquors/index":
+    get:
+      summary: list liquors
+      description: Show all liquors
+      tags:
+      - Liquors
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: successful
+  "/api/v1/liquors/update":
+    put:
+      summary: update liquor
+      description: Update a liquor
+      tags:
+      - Liquors
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: number
+                name:
+                  type: string
+                brand:
+                  type: string
+                description:
+                  type: string
+  "/api/v1/liquors/delete":
+    delete:
+      summary: delete liquor
+      description: List a single liquor
+      tags:
+      - Liquors
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: number
+  "/api/v1/liquors/show":
+    get:
+      summary: show liquor
+      description: List a single liquor
+      tags:
+      - Liquors
       responses:
         '200':
           description: successful

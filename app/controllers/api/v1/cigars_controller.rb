@@ -20,12 +20,41 @@ module Api
       end
 
       def show
+        cigar = Cigar.find(params[:id])
+        payload = {
+          cigar: CigarBlueprint.render_as_hash(cigar),
+        }
+        render_success(payload: payload, status: 200)
       end
 
       def update
+        pcigar = Cigar.find(params[:id])
+        result = Api::Cigars.update_cigar(params)
+        render_error(errors: "There was an error updating the cigar", status: 400) and return unless result.success?
+        previous_values = {
+          id: pcigar[:id],
+          email: pcigar[:name],
+          first_name: pcigar[:brand],
+          last_name: pcigar[:description],
+        }
+        payload = {
+          cigar: CigarBlueprint.render_as_hash(result.payload),
+          previous_values: previous_values,
+          status: 201,
+        }
+        render_success(payload: payload)
       end
 
       def delete
+        result = Api::Cigars.delete_cigar(params)
+        render_error(errors: "There was an error deleting the cigar", status: 400) and return unless result.success?
+        payload = {
+          status: "success",
+          message: "The cigar was successfully deleted",
+          cigar: CigarBlueprint.render_as_hash(result.payload),
+          status: 201,
+        }
+        render_success(payload: payload)
       end
     end
   end
