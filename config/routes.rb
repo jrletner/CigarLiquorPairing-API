@@ -32,42 +32,42 @@ Rails.application.routes.draw do
       namespace :cigars do
         # api/V1/cigars/create, to: "cigarss#create"
         post :create
-        # api/V1/cigars/logout, to: "cigars#logout"
-        delete :logout
         # api/V1/cigars/, to: "cigars#index"
         get :index
         # api/V1/cigars/, to: "cigars#update"
         put :update
         # api/V1/cigars/delete, to: "cigars#delete"
         delete :delete
+        # api/V1/cigars/show, to: "cigars#show"
+        get :show
       end
 
       # api/v1/liquors
       namespace :liquors do
         # api/V1/liquors/create, to: "liquors#create"
         post :create
-        # api/V1/liquors/logout, to: "liquors#logout"
-        delete :logout
         # api/V1/liquors/, to: "liquors#index"
         get :index
         # api/V1/liquors/, to: "liquors#update"
         put :update
         # api/V1/liquors/delete, to: "liquors#delete"
         delete :delete
+        # api/V1/liquors/show, to: "liquors#show"
+        get :show
       end
 
       # api/v1/pairings
       namespace :pairings do
         # api/V1/pairings/create, to: "pairings#create"
         post :create
-        # api/V1/pairings/logout, to: "pairings#logout"
-        delete :logout
         # api/V1/pairings/, to: "pairings#index"
         get :index
         # api/V1/pairings/, to: "pairings#update"
         put :update
         # api/V1/pairings/delete, to: "pairings#delete"
         delete :delete
+        # api/V1/pairings/show, to: "pairings#show"
+        get :show
       end
     end
   end

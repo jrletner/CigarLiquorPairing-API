@@ -116,7 +116,7 @@ RSpec.describe "api/v1/users", type: :request do
   # U P D A T E
   path "/api/v1/users/update" do
     put("update user") do
-      description "Update a user"
+      description "Update a user. Pass the user_id, first_name, last_name"
       tags "Users"
       security [bearer_auth: []]
       consumes "application/json"
@@ -124,7 +124,6 @@ RSpec.describe "api/v1/users", type: :request do
                   type: "object",
                   properties: {
                     id: { type: "number" },
-                    email: { type: "string" },
                     first_name: { type: "string" },
                     last_name: { type: "string" },
 

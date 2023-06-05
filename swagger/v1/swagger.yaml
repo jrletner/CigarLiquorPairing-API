@@ -4,6 +4,74 @@ info:
   title: CigarLiquorPairing API V1
   version: v1
 paths:
+  "/api/v1/cigars/create":
+    post:
+      summary: create cigar
+      description: Create a new cigar
+      tags:
+      - Cigars
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                brand:
+                  type: string
+                description:
+                  type: string
+  "/api/v1/cigars/index":
+    get:
+      summary: list cigars
+      description: List all cigars
+      tags:
+      - Cigars
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: successful
+  "/api/v1/cigars/update":
+    put:
+      summary: update cigar
+      description: Update a cigar
+      tags:
+      - Cigars
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: successful
+  "/api/v1/cigars/delete":
+    delete:
+      summary: delete cigar
+      description: Delete a cigar
+      tags:
+      - Cigars
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: successful
+  "/api/v1/cigars/show":
+    get:
+      summary: show cigar
+      description: List a single cigar
+      tags:
+      - Cigars
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: successful
   "/api/v1/users/login":
     post:
       summary: login user
@@ -84,7 +152,7 @@ paths:
   "/api/v1/users/update":
     put:
       summary: update user
-      description: Update a user
+      description: Update a user. Pass the user_id, first_name, last_name
       tags:
       - Users
       security:
@@ -101,8 +169,6 @@ paths:
               properties:
                 id:
                   type: number
-                email:
-                  type: string
                 first_name:
                   type: string
                 last_name:

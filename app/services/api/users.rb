@@ -16,10 +16,15 @@ module Api # same name as folder in services
     end
 
     def self.update_user(params)
-      user = User.find(params[:id])
-      return ServiceContract.success(user) if user.update(email: params[:email], first_name: params[:first_name], last_name: params[:last_name])
+      user = User.find_by(id: params[:id])
 
-      ServiceContract.error(user.errors.full_messages)
+      return ServiceContract.error("User not found") unless user
+
+      if user.update(first_name: params[:first_name], last_name: params[:last_name])
+        ServiceContract.success(user)
+      else
+        ServiceContract.error("Failed to update user")
+      end
     end
   end
 end

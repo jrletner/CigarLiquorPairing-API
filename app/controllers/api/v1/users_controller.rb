@@ -54,10 +54,18 @@ module Api
       end
 
       def update
+        puser = User.find(params[:id])
         result = Api::Users.update_user(params)
-        render_error(errors: result.errors.all, status: 400) and return unless result.success?
+        render_error(errors: "There was an error updating the user", status: 400) and return unless result.success?
+        previous_values = {
+          id: puser[:id],
+          email: puser[:email],
+          first_name: puser[:first_name],
+          last_name: puser[:last_name],
+        }
         payload = {
           user: UserBlueprint.render_as_hash(result.payload),
+          previous_values: previous_values,
           status: 201,
         }
         render_success(payload: payload)
