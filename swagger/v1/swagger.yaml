@@ -202,6 +202,101 @@ paths:
       responses:
         '200':
           description: successful
+  "/api/v1/pairings/create":
+    post:
+      summary: create pairing
+      description: Create a pairing
+      tags:
+      - Pairings
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cigar_id:
+                  type: number
+                liquor_id:
+                  type: number
+  "/api/v1/pairings/index":
+    get:
+      summary: list pairings
+      description: List all pairings
+      tags:
+      - Pairings
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: successful
+  "/api/v1/pairings/update":
+    put:
+      summary: update pairing
+      description: Update a pairing
+      tags:
+      - Pairings
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: number
+                cigar_id:
+                  type: number
+                liquor_id:
+                  type: number
+  "/api/v1/pairings/delete":
+    delete:
+      summary: delete pairing
+      description: Delete a pairing
+      tags:
+      - Pairings
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: number
+  "/api/v1/pairings/show":
+    get:
+      summary: show pairing
+      description: Show a single pairing
+      tags:
+      - Pairings
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: integer
+          description: ID of the pairing
+      responses:
+        '200':
+          description: successful
   "/api/v1/users/login":
     post:
       summary: login user

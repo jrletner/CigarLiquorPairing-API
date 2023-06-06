@@ -36,7 +36,6 @@ RSpec.describe "api/v1/liquors", type: :request do
       description "Show all liquors"
       tags "Liquors"
       security [bearer_auth: []]
-
       response(200, "successful") do
         after do |example|
           example.metadata[:response][:content] = {

@@ -1,20 +1,19 @@
 require "swagger_helper"
 
-RSpec.describe "api/v1/cigars", type: :request do
-  path "/api/v1/cigars/create" do
+RSpec.describe "api/v1/pairings", type: :request do
+  path "/api/v1/pairings/create" do
 
     # C R E A T E
-    post("create cigar") do
-      description "Create a new cigar"
-      tags "Cigars"
+    post("create pairing") do
+      description "Create a pairing"
+      tags "Pairings"
       security [bearer_auth: []]
       consumes "application/json"
       parameter name: :create, in: :body, schema: {
                   type: "object",
                   properties: {
-                    name: { type: "string" },
-                    brand: { type: "string" },
-                    description: { type: "string" },
+                    cigar_id: { type: "number" },
+                    liquor_id: { type: "number" },
                   },
                 }
       response(200, "successful") do
@@ -31,10 +30,10 @@ RSpec.describe "api/v1/cigars", type: :request do
   end
 
   # I N D E X
-  path "/api/v1/cigars/index" do
-    get("list cigars") do
-      description "List all cigars"
-      tags "Cigars"
+  path "/api/v1/pairings/index" do
+    get("list pairings") do
+      description "List all pairings"
+      tags "Pairings"
       security [bearer_auth: []]
       response(200, "successful") do
         after do |example|
@@ -50,19 +49,18 @@ RSpec.describe "api/v1/cigars", type: :request do
   end
 
   # U P D A T E
-  path "/api/v1/cigars/update" do
-    put("update cigar") do
-      description "Update a cigar"
-      tags "Cigars"
+  path "/api/v1/pairings/update" do
+    put("update pairing") do
+      description "Update a pairing"
+      tags "Pairings"
       security [bearer_auth: []]
       consumes "application/json"
       parameter name: :update, in: :body, schema: {
                   type: "object",
                   properties: {
                     id: { type: "number" },
-                    name: { type: "string" },
-                    brand: { type: "string" },
-                    description: { type: "string" },
+                    cigar_id: { type: "number" },
+                    liquor_id: { type: "number" },
                   },
                 }
       response(200, "successful") do
@@ -79,10 +77,10 @@ RSpec.describe "api/v1/cigars", type: :request do
   end
 
   # D E L E T E
-  path "/api/v1/cigars/delete" do
-    delete("delete cigar") do
-      description "Delete a cigar"
-      tags "Cigars"
+  path "/api/v1/pairings/delete" do
+    delete("delete pairing") do
+      description "Delete a pairing"
+      tags "Pairings"
       security [bearer_auth: []]
       consumes "application/json"
       parameter name: :delete, in: :body, schema: {
@@ -105,14 +103,15 @@ RSpec.describe "api/v1/cigars", type: :request do
   end
 
   # S H O W
-  path "/api/v1/cigars/show" do
-    get("show cigar") do
-      description "List a single cigar"
-      tags "Cigars"
+  path "/api/v1/pairings/show" do
+    get("show pairing") do
+      description "Show a single pairing"
+      tags "Pairings"
       security [bearer_auth: []]
+      consumes "application/json"
       parameter name: :id, in: :query, required: true, schema: {
                   type: "integer",
-                  description: "ID of the cigar",
+                  description: "ID of the pairing",
                 }
       response(200, "successful") do
         after do |example|

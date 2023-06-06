@@ -50,7 +50,7 @@ module Api
         render_error(errors: "There was an error deleting the liquor", status: 400) and return unless result.success?
         payload = {
           status: "success",
-          message: "The ligar was successfully deleted",
+          message: "The liquor was successfully deleted",
           liquor: LiquorBlueprint.render_as_hash(result.payload),
           status: 201,
         }
