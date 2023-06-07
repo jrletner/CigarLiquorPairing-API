@@ -15,6 +15,7 @@ RSpec.describe "api/v1/cigars", type: :request do
                     name: { type: "string" },
                     brand: { type: "string" },
                     description: { type: "string" },
+                    image_path: { type: "string" },
                   },
                 }
       response(200, "successful") do
@@ -63,6 +64,7 @@ RSpec.describe "api/v1/cigars", type: :request do
                     name: { type: "string" },
                     brand: { type: "string" },
                     description: { type: "string" },
+                    image_path: { type: "string" },
                   },
                 }
       response(200, "successful") do
