@@ -1,7 +1,7 @@
 module Api # same name as folder in services
   module Liquors # same name as file in folder above
     def self.new_liquor(params, current_user)
-      liquor = current_user.liquors.new(name: params[:name], brand: params[:brand], description: params[:description])
+      liquor = current_user.liquors.new(name: params[:name], brand: params[:brand], description: params[:description], image_path: params[:image_path])
 
       return ServiceContract.success(liquor) if liquor.save
 
@@ -13,7 +13,7 @@ module Api # same name as folder in services
 
       return ServiceContract.error("Liquor not found") unless liquor
 
-      if liquor.update(name: params[:name], brand: params[:brand], description: params[:description])
+      if liquor.update(name: params[:name], brand: params[:brand], description: params[:description], image_path: params[:image_path])
         ServiceContract.success(liquor)
       else
         ServiceContract.error("Failed to update liquor")

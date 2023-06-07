@@ -33,9 +33,10 @@ module Api
         render_error(errors: "There was an error updating the cigar", status: 400) and return unless result.success?
         previous_values = {
           id: pcigar[:id],
-          email: pcigar[:name],
-          first_name: pcigar[:brand],
-          last_name: pcigar[:description],
+          name: pcigar[:name],
+          brand: pcigar[:brand],
+          description: pcigar[:description],
+          image_path: pcigar[:image_path],
         }
         payload = {
           cigar: CigarBlueprint.render_as_hash(result.payload),

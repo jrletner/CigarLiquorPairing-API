@@ -1,7 +1,7 @@
 module Api # same name as folder in services
   module Cigars # same name as file in folder above
     def self.new_cigar(params, current_user)
-      cigar = current_user.cigars.new(name: params[:name], brand: params[:brand], description: params[:description])
+      cigar = current_user.cigars.new(name: params[:name], brand: params[:brand], description: params[:description], image_path: params[:image_path])
 
       return ServiceContract.success(cigar) if cigar.save
 
@@ -13,7 +13,7 @@ module Api # same name as folder in services
 
       return ServiceContract.error("Cigar not found") unless cigar
 
-      if cigar.update(name: params[:name], brand: params[:brand], description: params[:description])
+      if cigar.update(name: params[:name], brand: params[:brand], description: params[:description], image_path: params[:image_path])
         ServiceContract.success(cigar)
       else
         ServiceContract.error("Failed to update cigar")

@@ -33,9 +33,10 @@ module Api
         render_error(errors: "There was an error updating the liquor", status: 400) and return unless result.success?
         previous_values = {
           id: pliquor[:id],
-          email: pliquor[:name],
-          first_name: pliquor[:brand],
-          last_name: pliquor[:description],
+          name: pliquor[:name],
+          brand: pliquor[:brand],
+          description: pliquor[:description],
+          image_path: pliquor[:image_path],
         }
         payload = {
           liquor: LiquorBlueprint.render_as_hash(result.payload),
