@@ -1,7 +1,7 @@
 module Api # same name as folder in services
   module Pairings # same name as file in folder above
     def self.new_pairing(params, current_user)
-      pairing = current_user.pairings.new(cigar_id: params[:cigar_id], liquor_id: params[:liquor_id])
+      pairing = current_user.pairings.new(cigar_id: params[:cigar_id], name: params[:name], liquor_id: params[:liquor_id])
 
       return ServiceContract.success(pairing) if pairing.save
 
@@ -13,7 +13,7 @@ module Api # same name as folder in services
 
       return ServiceContract.error("Pairing not found") unless pairing
 
-      if pairing.update(cigar_id: params[:cigar_id], liquor_id: params[:liquor_id])
+      if pairing.update(name: params[:name], cigar_id: params[:cigar_id], liquor_id: params[:liquor_id])
         ServiceContract.success(pairing)
       else
         ServiceContract.error("Failed to update pairing")

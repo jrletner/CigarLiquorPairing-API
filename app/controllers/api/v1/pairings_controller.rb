@@ -33,6 +33,7 @@ module Api
         render_error(errors: "There was an error updating the pairing", status: 400) and return unless result.success?
         previous_values = {
           id: ppairing[:id],
+          name: ppairing[:name],
           user: ppairing[:user_id],
           liquor: ppairing[:liquor_id],
           cigar: ppairing[:cigar_id],

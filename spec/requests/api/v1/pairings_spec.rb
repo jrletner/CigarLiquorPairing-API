@@ -12,6 +12,7 @@ RSpec.describe "api/v1/pairings", type: :request do
       parameter name: :create, in: :body, schema: {
                   type: "object",
                   properties: {
+                    name: { type: "string" },
                     cigar_id: { type: "number" },
                     liquor_id: { type: "number" },
                   },
@@ -59,6 +60,7 @@ RSpec.describe "api/v1/pairings", type: :request do
                   type: "object",
                   properties: {
                     id: { type: "number" },
+                    name: { type: "string" },
                     cigar_id: { type: "number" },
                     liquor_id: { type: "number" },
                   },
