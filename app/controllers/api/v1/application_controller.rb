@@ -1,5 +1,5 @@
 class Api::V1::ApplicationController < ActionController::API
-  before_action :authenticate
+  #before_action :authenticate
 
   # get access to a set of methods that allows us to authenticate by parsing and validating tokens sent in Http headers
   include ActionController::HttpAuthentication::Token::ControllerMethods
